@@ -1,6 +1,6 @@
 import RecipeCard from './RecipeCard';
 
-function RecipeList({ recipes, title = "Рецепти" }) {
+function RecipeList({ recipes, title = "Рецепти", onRecipeClick }) {
   if (!recipes || recipes.length === 0) {
     return (
       <div className="recipe-list-empty">
@@ -15,7 +15,11 @@ function RecipeList({ recipes, title = "Рецепти" }) {
       <h2 className="recipe-list-title">{title}</h2>
       <div className="recipe-list">
         {recipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
+          <RecipeCard
+            key={recipe.id}
+            recipe={recipe}
+            onClick={() => onRecipeClick?.(recipe)}
+          />
         ))}
       </div>
     </section>

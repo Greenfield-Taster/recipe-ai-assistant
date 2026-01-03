@@ -1,4 +1,4 @@
-function RecipeCard({ recipe }) {
+function RecipeCard({ recipe, onClick }) {
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
       case "Легко": return "difficulty-easy";
@@ -9,7 +9,7 @@ function RecipeCard({ recipe }) {
   };
 
   return (
-    <div className="recipe-card">
+    <div className="recipe-card" onClick={onClick}>
       <div className="recipe-card-emoji">{recipe.emoji}</div>
       <div className="recipe-card-content">
         <h3 className="recipe-card-title">{recipe.name}</h3>
