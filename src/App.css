@@ -1,42 +1,557 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+/* ============================================
+   APP LAYOUT
+   ============================================ */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.header {
   padding: 2rem;
   text-align: center;
+  background: linear-gradient(180deg, rgba(10, 10, 15, 0.9), transparent);
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+  box-shadow: var(--shadow-neon-pink);
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
 }
 
-@keyframes logo-spin {
+.logo-icon {
+  font-size: 2.75rem;
+  filter: drop-shadow(0 0 10px rgba(255, 159, 10, 0.5));
+}
+
+.logo-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 0 20px rgba(255, 45, 149, 0.3));
+}
+
+.tagline {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ============================================
+   AI COPILOT SIDEBAR
+   ============================================ */
+
+.sidebar {
+  position: sticky;
+  top: 2rem;
+}
+
+.ai-copilot {
+  background: var(--bg-card);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-card);
+}
+
+.copilot-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 45, 149, 0.15), rgba(191, 90, 242, 0.15));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.copilot-icon {
+  font-size: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.copilot-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.copilot-messages {
+  height: 350px;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message {
+  max-width: 90%;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+.message.bot {
+  align-self: flex-start;
+}
+
+.message.user {
+  align-self: flex-end;
+}
+
+.message-content {
+  padding: 0.875rem 1rem;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.message.bot .message-content {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom-left-radius: 4px;
+}
+
+.message.user .message-content {
+  background: var(--gradient-primary);
+  border-bottom-right-radius: 4px;
+}
+
+.message-recipes {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mini-recipe {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+
+.mini-recipe:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.mini-emoji {
+  font-size: 1.1rem;
+}
+
+.mini-name {
+  flex: 1;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.mini-match {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  background: var(--gradient-secondary);
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.copilot-input {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem 1.25rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.copilot-input input {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.copilot-input input::placeholder {
+  color: var(--text-muted);
+}
+
+.copilot-input input:focus {
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 0 3px rgba(255, 45, 149, 0.15);
+}
+
+.copilot-input button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.25rem;
+  background: var(--gradient-primary);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.copilot-input button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-neon-pink);
+}
+
+.copilot-input button:active {
+  transform: translateY(0);
+}
+
+.btn-icon {
+  font-size: 1rem;
+}
+
+/* ============================================
+   RECIPE LIST
+   ============================================ */
+
+.recipe-list-section {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.recipe-list-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.recipe-list-title::before {
+  content: '';
+  width: 4px;
+  height: 28px;
+  background: var(--gradient-primary);
+  border-radius: 4px;
+}
+
+.recipe-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.recipe-list-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--bg-card);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* ============================================
+   RECIPE CARD
+   ============================================ */
+
+.recipe-card {
+  background: var(--gradient-card);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.recipe-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 45, 149, 0.1),
+    transparent 50%,
+    rgba(0, 245, 255, 0.1)
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(255, 45, 149, 0.1),
+    0 0 60px rgba(0, 245, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.recipe-card:hover::before {
+  opacity: 1;
+}
+
+.recipe-card-emoji {
+  font-size: 4rem;
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+  position: relative;
+}
+
+.recipe-card-content {
+  padding: 0 1.5rem 1.5rem;
+  position: relative;
+}
+
+.recipe-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, var(--text-primary), var(--text-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.recipe-card-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.recipe-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.recipe-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.4rem 0.75rem;
+  border-radius: 20px;
+}
+
+.meta-icon {
+  font-size: 0.9rem;
+}
+
+.recipe-difficulty {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.difficulty-easy {
+  background: linear-gradient(135deg, rgba(50, 215, 75, 0.2), rgba(50, 215, 75, 0.1));
+  color: var(--neon-green);
+  border: 1px solid rgba(50, 215, 75, 0.3);
+}
+
+.difficulty-medium {
+  background: linear-gradient(135deg, rgba(255, 159, 10, 0.2), rgba(255, 159, 10, 0.1));
+  color: var(--neon-orange);
+  border: 1px solid rgba(255, 159, 10, 0.3);
+}
+
+.difficulty-hard {
+  background: linear-gradient(135deg, rgba(255, 45, 149, 0.2), rgba(255, 45, 149, 0.1));
+  color: var(--neon-pink);
+  border: 1px solid rgba(255, 45, 149, 0.3);
+}
+
+.recipe-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ingredient-tag {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.7rem;
+  background: rgba(0, 245, 255, 0.08);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  border-radius: 8px;
+  color: var(--neon-cyan);
+  transition: all 0.2s ease;
+}
+
+.ingredient-tag:hover {
+  background: rgba(0, 245, 255, 0.15);
+  transform: scale(1.05);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  background: linear-gradient(180deg, transparent, rgba(10, 10, 15, 0.9));
+  margin-top: auto;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    order: -1;
+  }
+
+  .ai-copilot {
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 
-.card {
-  padding: 2em;
+@media (max-width: 640px) {
+  .header {
+    padding: 1.5rem 1rem;
+  }
+
+  .logo {
+    font-size: 2rem;
+  }
+
+  .main-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .recipe-list {
+    grid-template-columns: 1fr;
+  }
+
+  .copilot-messages {
+    height: 280px;
+  }
+
+  .copilot-input {
+    flex-direction: column;
+  }
+
+  .copilot-input button {
+    justify-content: center;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 45, 149, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 45, 149, 0.5);
+  }
 }

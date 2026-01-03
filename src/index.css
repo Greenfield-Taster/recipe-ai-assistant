@@ -1,68 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Neon color palette */
+  --neon-pink: #ff2d95;
+  --neon-cyan: #00f5ff;
+  --neon-purple: #bf5af2;
+  --neon-green: #32d74b;
+  --neon-orange: #ff9f0a;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+  --gradient-secondary: linear-gradient(135deg, var(--neon-cyan), var(--neon-green));
+  --gradient-card: linear-gradient(145deg, rgba(30, 30, 40, 0.9), rgba(20, 20, 30, 0.95));
+
+  /* Background colors */
+  --bg-dark: #0a0a0f;
+  --bg-card: rgba(20, 20, 30, 0.85);
+  --bg-input: rgba(30, 30, 45, 0.9);
+
+  /* Text colors */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.5);
+
+  /* Shadows */
+  --shadow-neon-pink: 0 0 20px rgba(255, 45, 149, 0.3);
+  --shadow-neon-cyan: 0 0 20px rgba(0, 245, 255, 0.3);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color: var(--text-primary);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  background-color: var(--bg-dark);
+  background-image:
+    /* Halftone pattern with food icons using SVG */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ctext x='5' y='20' font-size='12' fill='rgba(255,255,255,0.03)'%3E🍕%3C/text%3E%3Ctext x='35' y='45' font-size='10' fill='rgba(255,255,255,0.025)'%3E🥗%3C/text%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ctext x='10' y='30' font-size='14' fill='rgba(255,255,255,0.02)'%3E🍳%3C/text%3E%3Ctext x='50' y='65' font-size='11' fill='rgba(255,255,255,0.025)'%3E🍲%3C/text%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ctext x='15' y='40' font-size='16' fill='rgba(255,255,255,0.015)'%3E🥘%3C/text%3E%3Ctext x='60' y='80' font-size='12' fill='rgba(255,255,255,0.02)'%3E🍝%3C/text%3E%3C/svg%3E"),
+    /* Halftone dots pattern */
+    radial-gradient(circle at 25% 25%, rgba(255, 45, 149, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(191, 90, 242, 0.02) 2px, transparent 2px),
+    /* Gradient overlay */
+    radial-gradient(ellipse at top left, rgba(255, 45, 149, 0.08), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(0, 245, 255, 0.08), transparent 50%);
+  background-size: 60px 60px, 80px 80px, 100px 100px, 20px 20px, 20px 20px, 40px 40px, 100% 100%, 100% 100%;
+  background-attachment: fixed;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+::-webkit-scrollbar-track {
+  background: rgba(20, 20, 30, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-pink), var(--neon-purple));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--neon-purple), var(--neon-pink));
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(255, 45, 149, 0.3);
+  color: var(--text-primary);
 }
