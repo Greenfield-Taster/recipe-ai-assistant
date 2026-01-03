@@ -1,48 +1,46 @@
 /* ============================================
-   APP LAYOUT
+   APP LAYOUT - Fixed Sidebar
    ============================================ */
 
-.app {
-  min-height: 100vh;
+.app-layout {
   display: flex;
-  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* ============================================
-   HEADER
+   SIDEBAR - Fixed Full Height
    ============================================ */
 
-.header {
-  padding: 2rem;
-  text-align: center;
-  background: linear-gradient(180deg, rgba(10, 10, 15, 0.9), transparent);
-  position: relative;
+.sidebar {
+  width: 400px;
+  min-width: 400px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, rgba(15, 15, 20, 0.98), rgba(10, 10, 15, 0.98));
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  z-index: 100;
 }
 
-.header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  height: 2px;
-  background: var(--gradient-primary);
-  border-radius: 2px;
-  box-shadow: var(--shadow-neon-pink);
+.sidebar-header {
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .logo {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   font-weight: 800;
-  margin-bottom: 0.5rem;
 }
 
 .logo-icon {
-  font-size: 2.75rem;
+  font-size: 2rem;
   filter: drop-shadow(0 0 10px rgba(255, 159, 10, 0.5));
 }
 
@@ -51,59 +49,26 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: none;
   filter: drop-shadow(0 0 20px rgba(255, 45, 149, 0.3));
 }
 
-.tagline {
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-  font-weight: 400;
-}
-
 /* ============================================
-   MAIN CONTENT
+   AI COPILOT - Full Height
    ============================================ */
-
-.main-content {
-  flex: 1;
-  padding: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.content-grid {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-
-/* ============================================
-   AI COPILOT SIDEBAR
-   ============================================ */
-
-.sidebar {
-  position: sticky;
-  top: 2rem;
-}
 
 .ai-copilot {
-  background: var(--bg-card);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  backdrop-filter: blur(20px);
-  box-shadow: var(--shadow-card);
 }
 
 .copilot-header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1.25rem 1.5rem;
-  background: linear-gradient(135deg, rgba(255, 45, 149, 0.15), rgba(191, 90, 242, 0.15));
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 45, 149, 0.1), rgba(191, 90, 242, 0.1));
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -118,7 +83,7 @@
 }
 
 .copilot-header h3 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
@@ -127,16 +92,16 @@
 }
 
 .copilot-messages {
-  height: 350px;
+  flex: 1;
   overflow-y: auto;
-  padding: 1rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
 .message {
-  max-width: 90%;
+  max-width: 95%;
   animation: slideIn 0.3s ease-out;
 }
 
@@ -160,10 +125,10 @@
 }
 
 .message-content {
-  padding: 0.875rem 1rem;
-  border-radius: 16px;
-  font-size: 0.9rem;
-  line-height: 1.5;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .message.bot .message-content {
@@ -178,7 +143,7 @@
 }
 
 .message-recipes {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -187,32 +152,34 @@
 .mini-recipe {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .mini-recipe:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateX(5px);
+  border-color: rgba(0, 245, 255, 0.3);
 }
 
 .mini-emoji {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
 }
 
 .mini-name {
   flex: 1;
   font-weight: 500;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .mini-match {
   font-size: 0.75rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.25rem 0.6rem;
   background: var(--gradient-secondary);
   border-radius: 20px;
   font-weight: 600;
@@ -221,19 +188,19 @@
 .copilot-input {
   display: flex;
   gap: 0.75rem;
-  padding: 1rem 1.25rem 1.25rem;
-  background: rgba(0, 0, 0, 0.2);
+  padding: 1.25rem 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .copilot-input input {
   flex: 1;
-  padding: 0.875rem 1rem;
+  padding: 1rem 1.25rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--bg-input);
   color: var(--text-primary);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-family: inherit;
   outline: none;
   transition: all 0.3s ease;
@@ -252,12 +219,12 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.25rem;
+  padding: 1rem 1.5rem;
   background: var(--gradient-primary);
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   color: white;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
@@ -274,7 +241,37 @@
 }
 
 .btn-icon {
-  font-size: 1rem;
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   MAIN CONTENT - Scrollable
+   ============================================ */
+
+.main-content {
+  flex: 1;
+  margin-left: 400px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-header {
+  padding: 1.5rem 2rem;
+  background: linear-gradient(180deg, rgba(10, 10, 15, 0.9), transparent);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tagline {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.recipes-section {
+  flex: 1;
+  padding: 2rem;
 }
 
 /* ============================================
@@ -309,7 +306,7 @@
 
 .recipe-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
@@ -476,53 +473,398 @@
    ============================================ */
 
 .footer {
-  padding: 2rem;
+  padding: 1.5rem 2rem;
   text-align: center;
   color: var(--text-muted);
   font-size: 0.9rem;
   background: linear-gradient(180deg, transparent, rgba(10, 10, 15, 0.9));
-  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   RECIPE DETAIL MODAL
+   ============================================ */
+
+.recipe-detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.recipe-detail-modal {
+  background: var(--gradient-card);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 100px rgba(255, 45, 149, 0.1),
+    0 0 100px rgba(0, 245, 255, 0.1);
+  animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: rgba(255, 45, 149, 0.2);
+  border-color: var(--neon-pink);
+  color: var(--neon-pink);
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 2rem 1.5rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.modal-emoji {
+  font-size: 4.5rem;
+  filter: drop-shadow(0 0 20px rgba(255, 159, 10, 0.3));
+}
+
+.modal-title-block {
+  flex: 1;
+}
+
+.modal-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--text-primary), var(--neon-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.modal-description {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.modal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.25rem 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  align-items: center;
+}
+
+.modal-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Servings control */
+.servings-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.35rem 0.5rem 0.35rem 1rem;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.servings-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.servings-btn:hover {
+  background: var(--neon-cyan);
+  border-color: var(--neon-cyan);
+  color: #000;
+}
+
+.servings-value {
+  min-width: 70px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+/* Share button */
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--gradient-secondary);
+  border: none;
+  border-radius: 25px;
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-neon-cyan);
+}
+
+.share-btn.copied {
+  background: var(--neon-green);
+}
+
+.share-icon {
+  font-size: 1rem;
+}
+
+.modal-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.modal-ingredients h3,
+.modal-steps h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+}
+
+.section-icon {
+  font-size: 1.3rem;
+}
+
+.ingredients-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ingredient-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 1rem;
+  background: rgba(0, 245, 255, 0.05);
+  border: 1px solid rgba(0, 245, 255, 0.15);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.ingredient-item:hover {
+  background: rgba(0, 245, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.ingredient-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.ingredient-amount {
+  color: var(--neon-cyan);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.steps-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.step-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.2s ease;
+}
+
+.step-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 45, 149, 0.2);
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.step-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding-top: 0.25rem;
 }
 
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */
 
-@media (max-width: 1024px) {
-  .content-grid {
-    grid-template-columns: 1fr;
-  }
-
+@media (max-width: 1200px) {
   .sidebar {
-    position: static;
-    order: -1;
-  }
-
-  .ai-copilot {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 640px) {
-  .header {
-    padding: 1.5rem 1rem;
-  }
-
-  .logo {
-    font-size: 2rem;
+    width: 350px;
+    min-width: 350px;
   }
 
   .main-content {
-    padding: 1.5rem 1rem;
+    margin-left: 350px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    max-height: 50vh;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .copilot-messages {
+    max-height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .recipe-detail-overlay {
+    padding: 1rem;
+  }
+
+  .modal-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .modal-emoji {
+    font-size: 3.5rem;
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+  }
+
+  .modal-content {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+
+  .modal-meta {
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .share-btn {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .recipes-section {
+    padding: 1.5rem;
   }
 
   .recipe-list {
     grid-template-columns: 1fr;
   }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    max-height: 45vh;
+  }
 
   .copilot-messages {
-    height: 280px;
+    max-height: 180px;
   }
 
   .copilot-input {
@@ -530,6 +872,11 @@
   }
 
   .copilot-input button {
+    justify-content: center;
+  }
+
+  .servings-control {
+    width: 100%;
     justify-content: center;
   }
 }

@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function AICopilot({ recipes, onRecipesFound }) {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
     {
       type: 'bot',
-      text: 'Привіт! Я твій кулінарний помічник. Напиши які інгредієнти у тебе є, і я підкажу що можна приготувати!'
+      text: 'Привіт! 👋 Я твій кулінарний помічник. Напиши які інгредієнти у тебе є, і я підкажу що можна приготувати!'
     }
   ]);
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   const findRecipes = (ingredients) => {
     const userIngredients = ingredients
@@ -87,6 +92,7 @@ function AICopilot({ recipes, onRecipesFound }) {
             </div>
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       <form className="copilot-input" onSubmit={handleSubmit}>
